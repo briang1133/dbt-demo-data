@@ -1,11 +1,11 @@
 
-name: 'analytics'
+name: 'demo_data'
 
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'analytics'
+profile: 'demo_data'
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -23,6 +23,6 @@ vars:
   truncate_timespan_to: "{{ dbt_utils.current_timestamp() }}"
 
 models:
-  analytics:
+  demo_data:
     marts:
       +materialized: table
