@@ -12,13 +12,93 @@ sources:
     tables:
       - name: customers
         description: One record per person who has purchased one or more items
+        external:
+          location: 's3://dbt-demo-data-2022/jaffle-shop/customers'
+          file_format: '( type = parquet )'
+          auto_refresh: false
+        columns:
+          - name: id
+            data_type: string
+          - name: name
+            data_type: string
       - name: orders
         description: One record per order (consisting of one or more order items)
+        external:
+          location: 's3://dbt-demo-data-2022/jaffle-shop/orders'
+          file_format: '( type = parquet )'
+          auto_refresh: false
+        columns:
+          - name: id
+            data_type: string
+          - name: location_id
+            data_type: string
+          - name: customer_id
+            data_type: string
+          - name: ordered_at
+            data_type: timestamp
+          - name: order_total
+            data_type: int
+          - name: tax_paid
+            data_type: int
       - name: order_items
         description: Items included in an order
+        external:
+          location: 's3://dbt-demo-data-2022/jaffle-shop/order_items'
+          file_format: '( type = parquet )'
+          auto_refresh: false
+        columns:
+          - name: id
+            data_type: string
+          - name: order_id
+            data_type: string
+          - name: sku
+            data_type: string
       - name: locations
         description: One record per physical store location
+        external:
+          location: 's3://dbt-demo-data-2022/jaffle-shop/locations'
+          file_format: '( type = parquet )'
+          auto_refresh: false
+        columns:
+          - name: id
+            data_type: string
+          - name: name
+            data_type: string
+          - name: opened_at
+            data_type: timestamp
+          - name: tax_rate
+            data_type: float
       - name: products
         description: One record per SKU for items sold in stores
+        external:
+          location: 's3://dbt-demo-data-2022/jaffle-shop/products'
+          file_format: '( type = parquet )'
+          auto_refresh: false
+        columns:
+          - name: sku
+            data_type: string
+          - name: name
+            data_type: string
+          - name: type
+            data_type: string
+          - name: description
+            data_type: string
+          - name: price
+            data_type: int
       - name: supplies
         description: One record per supply per SKU of items sold in stores
+        external:
+          location: 's3://dbt-demo-data-2022/jaffle-shop/supplies'
+          file_format: '( type = parquet )'
+          auto_refresh: false
+        columns:
+          - name: id
+            data_type: string
+          - name: name
+            data_type: string
+          - name: cost
+            data_type: int
+          - name: perishable
+            data_type: boolean
+          - name: sku
+            data_type: string
