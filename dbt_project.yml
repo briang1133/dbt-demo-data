@@ -25,4 +25,4 @@ vars:
 models:
   demo_data:
     marts:
-      +materialized: view
+      +materialized: table
