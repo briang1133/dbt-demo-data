@@ -5,7 +5,7 @@ metrics:
   - name: revenue
     label: Revenue
     model: ref('orders')
-    description: "Income from all orders less tax"
+    description: "Revenue from all orders less tax"
 
     calculation_method: sum
     expression: order_total - tax_paid
