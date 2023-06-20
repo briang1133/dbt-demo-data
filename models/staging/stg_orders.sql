@@ -22,9 +22,9 @@ with
 
             -- -------- properties
             (order_total / 100.0)::float as order_total,
-                {{cents_to_dollars("order_total")}} as order_total_macro,
+            {{ cents_to_dollars("order_total") }} as order_total_macro,
             order_total::float as order_cents,
-                (tax_paid / 100.0)::float as tax_paid,
+            (tax_paid / 100.0)::float as tax_paid,
 
             -- -------- timestamps
             ordered_at
