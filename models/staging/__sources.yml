@@ -10,7 +10,7 @@ sources:
     loader: manual
 
     tables:
-      - name: customers
+      - name: src_customers
         description: One record per person who has purchased one or more items
         external:
           location: 's3://dbt-demo-data-2022/jaffle-shop/customers'
@@ -21,7 +21,7 @@ sources:
             data_type: string
           - name: name
             data_type: string
-      - name: orders
+      - name: src_orders
         description: One record per order (consisting of one or more order items)
         external:
           location: 's3://dbt-demo-data-2022/jaffle-shop/orders'
@@ -40,7 +40,7 @@ sources:
             data_type: int
           - name: tax_paid
             data_type: int
-      - name: order_items
+      - name: src_order_items
         description: Items included in an order
         external:
           location: 's3://dbt-demo-data-2022/jaffle-shop/order_items'
@@ -53,7 +53,7 @@ sources:
             data_type: string
           - name: sku
             data_type: string
-      - name: locations
+      - name: src_locations
         description: One record per physical store location
         external:
           location: 's3://dbt-demo-data-2022/jaffle-shop/locations'
@@ -68,7 +68,7 @@ sources:
             data_type: timestamp
           - name: tax_rate
             data_type: float
-      - name: products
+      - name: src_products
         description: One record per SKU for items sold in stores
         external:
           location: 's3://dbt-demo-data-2022/jaffle-shop/products'
@@ -85,7 +85,7 @@ sources:
             data_type: string
           - name: price
             data_type: int
-      - name: supplies
+      - name: src_supplies
         description: One record per supply per SKU of items sold in stores
         external:
           location: 's3://dbt-demo-data-2022/jaffle-shop/supplies'
