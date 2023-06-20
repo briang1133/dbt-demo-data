@@ -1,33 +1,37 @@
+with
 
-with 
+    source as (
 
-source as (
+        select *
+        from {{ source("ecommerce", "src_orders") }}
 
-    select * from {{ source('ecommerce', 'orders') }}
+        -- - data runs to 2026, truncate timespan to desired range, current time as
+        -- default
+        where ordered_at <= {{ var("truncate_timespan_to") }}
 
-    --- data runs to 2026, truncate timespan to desired range, current time as default
-    where ordered_at <= {{ var('truncate_timespan_to') }}
+    ),
 
-),
+    renamed as (
 
-renamed as (
+        select
 
-    select
+            -- --------  ids
+            id as order_id,
+            location_id,
+            customer_id,
 
-        ----------  ids
-        id as order_id,
-        location_id,
-        customer_id,
+            -- -------- properties
+            (order_total / 100.0)::float as order_total,
+                {{cents_to_dollars("order_total")}} as order_total_macro,
+            order_total::float as order_cents,
+                (tax_paid / 100.0)::float as tax_paid,
 
-        ---------- properties
-        (order_total / 100.0)::float as order_total,
-        (tax_paid / 100.0)::float as tax_paid,
+            -- -------- timestamps
+            ordered_at
 
-        ---------- timestamps
-        ordered_at
+        from source
 
-    from source
+    )
 
-)
-
-select * from renamed
+select *
+from renamed
