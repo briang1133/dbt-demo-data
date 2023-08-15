@@ -1,5 +1,5 @@
 selectors:
-  - name: cost_saving_default
+  - name: skip_views_but_test_views
     description: >
       A rational default selector that will exclude materializing views
       without skipping tests on views.
